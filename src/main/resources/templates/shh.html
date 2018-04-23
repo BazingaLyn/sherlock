@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>Sherlock Shh</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">About</h4>
+                    <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Contact</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                        <li><a href="#" class="text-white">Like on Facebook</a></li>
+                        <li><a href="#" class="text-white">Email me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>Sherlock</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main role="main">
+
+    <!--<section class="jumbotron text-center">-->
+        <!--<div class="container">-->
+            <!--<h1 class="jumbotron-heading">Sherlock</h1>-->
+            <!--<p class="lead text-muted">Elasticsearch Demo,数据来自于豆瓣</p>-->
+            <!--<form class="hero__form" action="https://themes.getbootstrap.com/shop/">-->
+                <!--<div class="form-group">-->
+                    <!--<div class="form-group&#45;&#45;search form-group&#45;&#45;search&#45;&#45;left">-->
+                        <!--<input class="form-control form-control-lg form-control&#45;&#45;rounded" name="s" type="search" id="searchKey" placeholder="Search">-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</section>-->
+
+    <div class="album py-6 bg-light">
+        <div class="container">
+            <table id="table_server"></table>
+        </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="text-muted">
+    <div class="container">
+        <p class="float-right">
+            <a href="#">Back to top</a>
+        </p>
+        <p>Sherlock BazingaLyncc</p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+
+<script th:src="@{bootstrap.min.js}"></script>
+<script th:src="@{jquery.min.js}"></script>
+<link th:href="@{bootstrap.min.css}" rel="stylesheet">
+<script th:src="@{bootstrap-table.min.js}"></script>
+<script th:src="@{mindmup-editabletable.js}"></script>
+<link th:href="@{bootstrap-table.min.css}" rel="stylesheet">
+<script th:inline="javascript">
+    $(function () {
+
+        var t = $("#table_server").bootstrapTable({
+            url: "/sherlock/books/queryEsBooks",
+            method: 'post',
+            dataType: "json",
+            striped: true,//设置为 true 会有隔行变色效果
+            undefinedText: "空",//当数据为 undefined 时显示的字符
+            pagination: true, //分页
+            // paginationLoop:true,//设置为 true 启用分页条无限循环的功能。
+//            showToggle: "false",//是否显示 切换试图（table/card）按钮
+//            showColumns: "false",//是否显示 内容列下拉框
+            pageNumber: 1,//如果设置了分页，首页页码
+            // showPaginationSwitch:true,//是否显示 数据条数选择框
+            pageSize: 20,//如果设置了分页，页面数据条数
+            pageList: [20,30, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。
+            paginationPreText: '‹',//指定分页条中上一页按钮的图标或文字,这里是<
+            paginationNextText: '›',//指定分页条中下一页按钮的图标或文字,这里是>
+            // singleSelect: false,//设置True 将禁止多选
+            search: true, //显示搜索框
+            searchOnEnterKey:true,
+            data_local: "zh-US",//表格汉化
+            sidePagination: "server", //服务端处理分页
+            queryParams: function (params) {//自定义参数，这里的参数是传给后台的，我这是是分页用的
+                return {//这里的params是table提供的
+                    from: params.offset,//从数据库第几条记录开始
+                    size: params.limit,//找多少条
+                    wq : params.search,
+                    wq2 : params.searchText
+                };
+            },
+            idField: "id",//指定主键列
+            columns: [
+                {
+                    title: 'id',//表的列名
+                    field: 'id',//json数据中rows数组中的属性名
+                    class: '#id',
+                    align: 'center'//水平居中
+                },
+                {
+                    title: '书名',
+                    field: 'title',
+                    class: '#title',
+                    align: 'center'
+                },
+                {
+                    title: '作者',
+                    field: 'author',
+                    class: '#author',
+                    align: 'center'
+                },
+                {
+                    title: '出版社',
+                    field: 'publisher',
+                    class: '#publisher',
+                    align: 'center'
+                },
+                {
+                    title: '价格',
+                    field: 'price',
+                    class: '#price',
+                    align: 'center'
+                },
+//                {
+//                    title: '数据版本',
+//                    field: 'version',
+//                    align: 'center'
+//                },
+                {
+                    title: '搜索评分',
+                    field: 'score',
+                    class: '#score',
+                    align: 'center'
+                },
+                {
+                    title: '系统是否推荐',
+                    field: 'is_recommendation',
+                    align: 'center',
+                    class: '#is_recommendation',
+                    formatter: function (value, row, index) {//自定义显示，这三个参数分别是：value该行的属性，row该行记录，index该行下标
+                        return row.is_recommendation? "推荐" : "不推荐";
+                    }
+                },
+                {
+                    title: '推荐指数',
+                    field: 'recommendation_score',
+                    class: '#recommendation_score',
+                    align: 'center'
+                },
+                {
+                    title: '操作',
+                    field: 'userId',
+                    align: 'center',
+                    formatter: function (value, row, index) {//自定义显示可以写标签哦~
+                        return '<a href="#" mce_href="#" onclick="edit(\'' + row.userId + '\')">操作</a> ';
+                    }
+                }
+
+            ]
+        });
+
+
+        t.on('load-success.bs.table', function (data) {//table加载成功后的监听函数
+            console.log("load success");
+            $(".pull-right").css("display", "block");
+
+            $("#table_server").editableTableWidget();
+
+            $('table td').on('change', function(evt, newValue) {
+                // do something with the new cell value
+                console.info(evt);
+                console.info($(this).parent().children().eq(0).text());
+                console.info(newValue);
+            });
+
+        });
+
+    });
+</script>
+
+</body>
+</html>

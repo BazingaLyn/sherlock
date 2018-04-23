@@ -1,0 +1,36 @@
+{
+  "query": {
+    "function_score": {
+      "query": {
+        "bool": {
+          "must": {
+            "multi_match": {
+              "query": "java",
+              "fields": [
+                "title.title_max_ik",
+                "author.author_max_ik"
+
+              ],
+              "type": "best_fields"
+            }
+          }
+        }
+      },
+      "field_value_factor": {
+        "field": "recommendation_score",
+        "modifier": "log1p",
+        "factor": 0.1
+      }
+    },
+    "highlight": {
+      "pre_tags": ["<font color='#e4393c'>"],
+      "post_tags": ["</font>"],
+      "fields": {
+        "title.title_*": {},
+        "author.author_*": {}
+      }
+    },
+    "from": 0,
+    "size": 10
+  }
+}

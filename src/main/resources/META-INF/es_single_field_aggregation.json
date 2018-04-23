@@ -1,0 +1,10 @@
+{
+  "_source": false,
+  "aggs": {
+    "{{aggsName}}": {
+      "terms": {
+        "field": "{{aggsField}}"
+      }
+    }
+  }
+}

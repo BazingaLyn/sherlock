@@ -1,0 +1,8 @@
+6.0.0
+
+POST http://192.168.1.27:9200/sherlock/_analyze?pretty
+
+{
+  "analyzer": "ik_max_analyzer",
+  "text":"设计"
+}

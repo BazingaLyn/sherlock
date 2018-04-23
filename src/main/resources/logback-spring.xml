@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <configuration>
+        <!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份) -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n</pattern>
+        </layout>
+    </appender>
+        <appender name="FILE"
+                  class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <File>/opt/bazinga/sherlock/sherlock.log</File>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <FileNamePattern>
+                    /opt/bazinga/sherlock/sherlock.log.%d{yyyy-MM-dd}.log
+                </FileNamePattern>
+            </rollingPolicy>
+            <layout>
+                <Pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{32} -%msg%n</Pattern>
+            </layout>
+        </appender>
+        <appender name="TIMELOGFILE"
+                  class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <File>/opt/bazinga/sherlock/sherlock-time.log</File>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <FileNamePattern>/opt/bazinga/sherlock//sherlock-time.%d{yyyy-MM-dd}.log
+                </FileNamePattern>
+            </rollingPolicy>
+            <layout>
+                <Pattern>%msg%n</Pattern>
+            </layout>
+        </appender>
+        <appender name="DEBUGINFOFILE"
+                  class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <File>/opt/bazinga/sherlock/sherlock-debug.log</File>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <FileNamePattern>/opt/bazinga/sherlock/sherlock-debug.%d{yyyy-MM-dd}.log
+                </FileNamePattern>
+            </rollingPolicy>
+            <layout>
+                <Pattern>%d{HH:mm:ss.SSS}-%msg%n</Pattern>
+            </layout>
+        </appender>
+
+        <logger name="timelogger" level="DEBUG" additivity="false">
+            <appender-ref ref="TIMELOGFILE" />
+        </logger>
+        <logger name="debuginfologger" level="DEBUG" additivity="false">
+            <appender-ref ref="DEBUGINFOFILE" />
+        </logger>
+
+        <root level="INFO">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="FILE" />
+        </root>
+</configuration>

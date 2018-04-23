@@ -1,0 +1,39 @@
+Match Query会对用户输入的内容进行高级处理,比如对其进行分词处理,会分析输入内容的类型,如果是日期类型或数字类型,就会采用精确匹配,如果是是一个文本内容,则
+会对其进行分析成词条(terms),然后采用比较低级的term查询进行处理,同时 Match Query提供了一些特性来更好的帮助我们优化搜索结果,比如fuzziness
+
+检查字段类型
+
+title字段是一个全文字符串字段(analyzed)，意味着查询字符串也需要被分析。
+
+解析查询字符串
+
+查询字符串"QUICK!"会被传入到标准解析器中，得到的结果是单一词条"quick"。因为我们得到的只有一个词条，match查询会使用一个term低级查询来执行查询。
+
+找到匹配的文档
+
+term查询会在倒排索引中查询"quick"，然后获取到含有该词条的文档列表，在这个例子中，文档1，2，3会被返回。
+
+对每份文档打分
+term查询会为每份匹配的文档计算其相关度分值_score，该分值通过综合考虑词条频度(Term Frequency)("quick"在匹配的每份文档的title字段中出现的频繁程度)，倒排频度(Inverted Document Frequency)("quick"在整个索引中的所有文档的title字段中的出现程度)，以及每个字段的长度(较短的字段会被认为相关度更高)来得到。参考什么是相关度(What is Relevance?)
+
+高级特性
+POST /my_index/my_type/_search
+{
+  "query": {
+    "match": {
+      "title": "quack"
+    }
+  }
+}
+
+POST /my_index/my_type/_search
+{
+  "query": {
+    "match": {
+      "title": {
+        "query": "quack",
+        "fuzziness": 1
+      }
+    }
+  }
+}

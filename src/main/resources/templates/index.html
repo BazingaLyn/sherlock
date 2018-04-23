@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>Sherlock</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">About</h4>
+                    <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Contact</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                        <li><a href="#" class="text-white">Like on Facebook</a></li>
+                        <li><a href="#" class="text-white">Email me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>Album</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main role="main">
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Sherlock</h1>
+            <p class="lead text-muted">Elasticsearch Demo,数据来自于豆瓣</p>
+            <form class="hero__form" action="https://themes.getbootstrap.com/shop/">
+                <div class="form-group">
+                    <div class="form-group--search form-group--search--left">
+                        <input class="form-control form-control-lg form-control--rounded" name="s" type="search" id="searchKey" placeholder="Search">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <!--<section class="jumbotron">-->
+
+                <!--<div class="my-3 p-3 bg-white rounded box-shadow">-->
+                    <!--<h6 class="border-bottom border-gray pb-2 mb-0">分类检索</h6>-->
+                    <!--<div class="media text-muted pt-3">-->
+                        <!--<img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16270c547d6%20text%20%7B%20fill%3A%23007bff%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A2pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16270c547d6%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23007bff%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2211.546875%22%20y%3D%2216.9%22%3E32x32%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 32px; height: 32px;">-->
+                        <!--<div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="media text-muted pt-3">-->
+                        <!--<img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16270c547d9%20text%20%7B%20fill%3A%23007bff%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A2pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16270c547d9%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23007bff%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2211.546875%22%20y%3D%2216.9%22%3E32x32%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 32px; height: 32px;">-->
+                        <!--<div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="media text-muted pt-3">-->
+                        <!--<img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16270c547db%20text%20%7B%20fill%3A%23007bff%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A2pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16270c547db%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23007bff%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2211.546875%22%20y%3D%2216.9%22%3E32x32%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 32px; height: 32px;">-->
+                        <!--<div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                                <!--<div class="col-sm">-->
+                                    <!--One of three columns-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<small class="d-block text-right mt-3">-->
+                        <!--<a href="#">All suggestions</a>-->
+                    <!--</small>-->
+                <!--</div>-->
+            <!--</section>-->
+            <div class="row" id="bookcontent">
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="text-muted">
+    <div class="container">
+        <p class="float-right">
+            <a href="#">Back to top</a>
+        </p>
+        <p>Sherlock BazingaLyncc</p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+
+<script th:src="@{bootstrap.min.js}"></script>
+<script th:src="@{jquery.min.js}"></script>
+<link th:href="@{bootstrap.min.css}" rel="stylesheet">
+<script th:inline="javascript">
+
+    function search(wq){
+        var value = {
+            "wq":wq,
+            "from":0,
+            "size":20
+        };
+        $.ajax({
+            url:"/sherlock/books/queryBooks",
+            data:JSON.stringify(value),
+            type:"post",
+            dataType: 'json',
+            contentType:"application/json",
+            success:function(text){
+                $("#bookcontent").empty();
+                $.each(text.root,(function(index,element){
+                    $("#bookcontent").append("<div class=\"col-md-3\">\n" +
+                        "                    <div class=\"card mb-sm-3 box-shadow\">\n" +
+                        "                        <img class=\"card-img-top\"  src="+element.bookImg+" alt="+element.altTitle+">\n" +
+                        "                        <div class=\"card-body\">\n" +
+                        "                            <p class=\"card-text\">"+element.title+"</p>\n" +
+                        "                            <p class=\"card-text text-muted\">"+element.publisher+"</p>\n" +
+                        "                            <div class=\"d-flex justify-content-between align-items-center\">\n" +
+                        "                                <small class=\"text-muted\">"+element.author+"</small>\n" +
+                        "                                <small class=\"text-muted\">"+element.pubDate+"</small>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </div>\n" +
+                        "                </div>");
+                }));
+            }
+        });
+    }
+
+    $(function(){
+
+        var wq = $("#searchKey").val() == null ? null : $("#searchKey").val().length == 0 ? null : $("#searchKey").val();
+        console.info(wq);
+
+        $('#searchKey').keydown(function(e){
+            if(e.keyCode==13){
+                console.info($("#searchKey").val());
+                search($("#searchKey").val() == null ? null : $("#searchKey").val().length == 0 ? null : $("#searchKey").val());
+                e.preventDefault();
+            }
+        });
+
+        search(wq);
+
+
+    });
+</script>
+
+</body>
+</html>

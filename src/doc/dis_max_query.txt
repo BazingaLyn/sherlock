@@ -1,0 +1,15 @@
+Dis Max Query(Disjuction Max Query)
+此查询生成由其子查询生成的文档的并集，并为每个文档分配由任意子查询生成的该文档的最大分数，以及任何其他匹配子查询的分数增量即 tie breaking 属性。
+当在具有不同增压因子的多个字段中搜索字词（使得字段不能等价地组合到单个搜索字段中）时，这是有用的。我们希望主分数是与最高提升相关联的分数，而不是字段分数的总和（如布尔查询将给出的）。如果查询是“albino elephant”，这确保匹配一个字段的“albino”和匹配另一个字段的“elephant”得到比匹配两个字段的“albino”更高的分数。为了得到这个结果，使用 Boolean Query 和 DisjunctionMax Query ：在DisjunctionMaxQuery 的每个字段中搜索每个术语，而这些 DisjunctionMaxQuery 的集合组合成一个 BooleanQuery 。
+tie breaker 属性允许将会使多个字段中包括相同条款的结果，比仅在多个字段中的最佳字段里包括该条款的结果更好地判断，而不会将其与多个字段中的两个不同条款的 better case 相混淆。默认tie_breaker 为0.0 。
+该查询映射到 Lucene 的 DisjunctionMaxQuery 。
+
+tie_breaker参数会让dis_max查询的行为更像是dis_max和bool的一种折中。它会通过下面的方式改变分值计算过程：
+
+取得最佳匹配查询子句的_score。
+将其它每个匹配的子句的分值乘以tie_breaker。
+将以上得到的分值进行累加并规范化。
+通过tie_breaker参数，所有匹配的子句都会起作用，只不过最佳匹配子句的作用更大。
+
+
+

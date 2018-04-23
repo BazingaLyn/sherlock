@@ -1,0 +1,43 @@
+{
+  "query": {
+
+    "bool": {
+      "must": {
+        "multi_match": {
+          "query": "{{keyword}}",
+          "fields": [
+            "title.title_max_ik",
+            "author.author_max_ik"
+
+          ],
+          "type": "best_fields"
+        }
+      },
+
+      "filter": [{
+        "term": {
+          "publisher.publisher_ed": "{{publisherName}}"
+        }
+      },
+        {
+          "range": {
+            "price": {
+              "gte": "{{lowerPrice}}",
+              "lte": "{{higherPrice}}"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "highlight": {
+    "pre_tags": ["{{highTagPre}}"],
+    "post_tags": ["{{highTagPost}}"],
+    "fields": {
+      "title.title_*": {},
+      "author.author_*": {}
+    }
+  },
+  "from": "{{from}}",
+  "size": "{{size}}"
+}

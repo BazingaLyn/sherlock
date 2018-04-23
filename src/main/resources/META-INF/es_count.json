@@ -1,0 +1,6 @@
+{
+  "_source": false,
+  "query": {
+    "match_all": {}
+  }
+}

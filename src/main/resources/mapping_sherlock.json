@@ -1,0 +1,403 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "first_py_letter_analyzer": {
+          "tokenizer": "first_py_letter",
+          "filter": "edgeNGram_filter"
+        },
+        "full_pinyin_letter_analyzer": {
+          "tokenizer": "full_pinyin_letter",
+          "filter": "edgeNGram_filter"
+        },
+        "edgeNGram_analyzer": {
+          "tokenizer": "edgeNGram_tokenizer"
+        },
+        "ik_max_analyzer": {
+          "tokenizer": "max_ik"
+        },
+        "ik_smart_analyzer": {
+          "tokenizer": "smart_ik"
+        }
+      },
+      "tokenizer": {
+        "first_py_letter": {
+          "type": "pinyin",
+          "keep_first_letter": true,
+          "keep_full_pinyin": false,
+          "keep_original": false,
+          "limit_first_letter_length": 16,
+          "lowercase": true,
+          "trim_whitespace": true,
+          "keep_none_chinese_in_first_letter": false,
+          "none_chinese_pinyin_tokenize": false,
+          "keep_none_chinese": true,
+          "keep_none_chinese_in_joined_full_pinyin": true
+        },
+        "full_pinyin_letter": {
+          "type": "pinyin",
+          "keep_separate_first_letter": false,
+          "keep_full_pinyin": false,
+          "keep_original": false,
+          "limit_first_letter_length": 16,
+          "lowercase": true,
+          "keep_first_letter": false,
+          "keep_none_chinese_in_first_letter": false,
+          "none_chinese_pinyin_tokenize": false,
+          "keep_none_chinese": true,
+          "keep_joined_full_pinyin": true,
+          "keep_none_chinese_in_joined_full_pinyin": true
+        },
+        "max_ik": {
+          "type": "ik_max_word"
+        },
+        "smart_ik": {
+          "type": "ik_smart"
+        },
+        "edgeNGram_tokenizer": {
+          "type": "edgeNGram",
+          "min_gram": 1,
+          "max_gram": 15,
+          "token_chars": [
+            "letter",
+            "digit"
+          ]
+        }
+      },
+      "filter": {
+        "edgeNGram_filter": {
+          "type": "edgeNGram",
+          "min_gram": 1,
+          "max_gram": 50,
+          "token_chars": [
+            "letter",
+            "digit"
+          ]
+        }
+      }
+    },
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "book": {
+      "properties": {
+        "id": {
+          "type": "keyword",
+          "fields": {
+            "id_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "id_native": {
+              "type": "text",
+              "index": false
+            }
+          }
+        },
+        "isbn10": {
+          "type": "keyword",
+          "fields": {
+            "isbn10_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "isbn10_native": {
+              "type": "text",
+              "index": false
+            }
+          }
+        },
+        "isbn13": {
+          "type": "keyword",
+          "fields": {
+            "isbn13_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "isbn13_native": {
+              "type": "text",
+              "index": false
+            }
+          }
+        },
+        "title": {
+          "type": "keyword",
+          "fields": {
+            "title_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "title_max_ik": {
+              "type": "text",
+              "analyzer": "ik_max_analyzer"
+            },
+            "title_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            },
+            "title_py": {
+              "type": "text",
+              "analyzer": "first_py_letter_analyzer"
+            }
+          }
+        },
+        "origin_title": {
+          "type": "text",
+          "fields": {
+            "origin_title_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "origin_title_max_ik": {
+              "type": "text",
+              "analyzer": "ik_max_analyzer"
+            },
+            "origin_title_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            },
+            "origin_title_first_py": {
+              "type": "text",
+              "analyzer": "first_py_letter_analyzer"
+            }
+          }
+        },
+        "alt_title": {
+          "type": "text",
+          "fields": {
+            "alt_title_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "alt_title_max_ik": {
+              "type": "text",
+              "analyzer": "ik_max_analyzer"
+            },
+            "alt_title_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            },
+            "alt_title_first_py": {
+              "type": "text",
+              "analyzer": "first_py_letter_analyzer"
+            }
+          }
+        },
+        "subtitle": {
+          "type": "text",
+          "fields": {
+            "subtitle_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "subtitle_max_ik": {
+              "type": "text",
+              "analyzer": "ik_max_analyzer"
+            },
+            "subtitle_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            },
+            "subtitle_first_py": {
+              "type": "text",
+              "analyzer": "first_py_letter_analyzer"
+            }
+          }
+        },
+        "url": {
+          "type": "keyword",
+          "index": false
+        },
+        "alt": {
+          "type": "keyword",
+          "index": false
+        },
+        "image": {
+          "type": "keyword",
+          "index": false
+        },
+        "images.small": {
+          "type": "keyword",
+          "index": false
+        },
+        "images.large": {
+          "type": "keyword",
+          "index": false
+        },
+        "images.medium": {
+          "type": "keyword",
+          "index": false
+        },
+        "author": {
+          "type": "text",
+          "fields": {
+            "author_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "author_max_ik": {
+              "type": "text",
+              "analyzer": "ik_max_analyzer"
+            },
+            "author_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            },
+            "author_first_py": {
+              "type": "text",
+              "analyzer": "first_py_letter_analyzer"
+            },
+            "author_native": {
+              "type": "keyword",
+              "index": false
+            }
+          }
+        },
+        "translator": {
+          "type": "text",
+          "fields": {
+            "translator_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "translator_max_ik": {
+              "type": "text",
+              "analyzer": "ik_max_analyzer"
+            },
+            "translator_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            },
+            "translator_first_py": {
+              "type": "text",
+              "analyzer": "first_py_letter_analyzer"
+            },
+            "translator_native": {
+              "type": "keyword",
+              "index": false
+            }
+          }
+        },
+        "publisher": {
+          "type": "text",
+          "fields": {
+            "publisher_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "publisher_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            },
+            "publisher_first_py": {
+              "type": "text",
+              "analyzer": "first_py_letter_analyzer"
+            },
+            "publisher_native": {
+              "type": "keyword",
+              "index": false
+            }
+          }
+        },
+        "pubdate": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss || yyyy-MM-dd || epoch_millis"
+        },
+       
+       
+        "rating.average": {
+          "type": "keyword",
+          "index": false
+        },
+        "rating.min": {
+          "type": "keyword",
+          "index": false
+        },
+        "tags.count": {
+          "type": "keyword",
+          "index": false
+        },
+        "tags.name": {
+          "type": "keyword",
+          "index": false
+        },
+        "binding": {
+          "type": "keyword",
+          "index": false
+        },
+        "price": {
+          "type": "double"
+        },
+        "series.id": {
+          "type": "keyword",
+          "index": false
+        },
+        "series.title": {
+          "type": "keyword",
+          "fields": {
+            "series_title_ed": {
+              "type": "text",
+              "analyzer": "edgeNGram_analyzer"
+            },
+            "series_title_native": {
+              "type": "text",
+              "index": false
+            }
+          }
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "author_intro": {
+          "type": "keyword",
+          "fields": {
+            "author_intro_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            }
+          }
+        },
+        "summary": {
+          "type": "keyword",
+          "fields": {
+            "summary_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            }
+          }
+        },
+        "catalog": {
+          "type": "keyword",
+          "fields": {
+            "catalog_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            }
+          }
+        },
+        "ebook_url": {
+          "type": "keyword",
+          "fields": {
+            "ebook_url_pinyin": {
+              "type": "text",
+              "analyzer": "full_pinyin_letter_analyzer"
+            }
+          }
+        },
+        "ebook_price": {
+          "type": "double"
+        },
+        "is_recommendation": {
+          "type": "boolean"
+        },
+        "recommendation_score": {
+          "type": "float"
+        },
+        "is_delete": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

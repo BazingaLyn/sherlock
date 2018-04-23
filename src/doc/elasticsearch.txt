@@ -1,0 +1,57 @@
+ES基本查询语法
+POST ip:port/index/type/_search
+{
+    "query" : {
+        "term" : { "user" : "kimchy" }
+    }
+}
+
+from/size
+{
+    "from" : 0, "size" : 10,
+    "query" : {
+        "term" : { "user" : "kimchy" }
+    }
+}
+
+
+(ECS)
+注意点
+当ES服务器监听使用内网服务器IP而访问使用外网IP时，不要使用client.transport.sniff为true，在自动发现时会使用内网IP进行通信，导致无法连接到ES服务器，而直接使用addTransportAddress方法进行指定ES服务器。
+
+
+
+
+
+
+
+
+2、三角选择原则
+精准+实时+大数据 --> 选择2个
+（1）精准+实时: 没有大数据，数据量很小，那么一般就是单击跑，随便你则么玩儿就可以
+（2）精准+大数据：hadoop，批处理，非实时，可以处理海量数据，保证精准，可能会跑几个小时
+（3）大数据+实时：es，不精准，近似估计，可能会有百分之几的错误率
+
+
+
+
+基本概念和属性说说明
+1.index 相当于数据库模型中的库名
+2.type 相当于数据库模型中的表名
+3.分片shards，分片的概念是在index的层面上的，类比来说，就是mysql的库层面，如果不设置的话，默认是5个，会分散在不同的Node上，shard的lucene的索引最小单元
+当来一个document的时候，Elasticsearch通过对docid进行hash来确定其放在哪个shard上面，然后在shard上面进行索引存储
+4.Cluster ES是天生支持集群的，不需要zookeeper，es的集群可以认为是分主从的，也就是比较经典的master-slave方式，集群中每个ES的节点叫Node
+5.replicas 备份 当一个文档在master shard上索引后，也会在replicas上进行索引，replicas不会和master shard 在同一个node上，这样做的主要好处有2个，一个是容灾一个是加快查询的速度，因为查询的时候，不一样需要在master节点上查询
+6.mapping
+mapping 在es中是一个很重要的概念，与数据库中的DDL一样，是数据定义语言，mapping会规定在一个type中包含哪些字段，哪些字段应该被stored，哪些字段应该被索引，某个字段被什么分词器分词等等，字段的类型，类似java的string，int，date等等，甚至会规定date的格式，这个与spring的开闭原则也很像
+
+
+
+
+
+
+
+
+
+
+
